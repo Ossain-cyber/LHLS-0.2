@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAHADAT HADEAA LADIES SALON | Luxury Hair & Beauty | Sharjah</title>
+    <meta name="description" content="Premium ladies salon in Sharjah offering hair care, massage spa, and beauty services. Book your appointment today.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/971566969293" class="whatsapp-float" target="_blank" aria-label="Contact on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="Lahadat Hadeaa Ladies Salon Logo" class="logo-img">
+                <span class="logo-text">LAHADAT HADEAA<br><small>LADIES SALON</small></span>
+            </div>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="tel:+971566969293" class="nav-btn">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="slide active">
+                <div class="slide-content">
+                    <h1 class="hero-title">Experience Luxury Beauty Care</h1>
+                    <p class="hero-subtitle">Where elegance meets excellence in hair, spa & beauty treatments</p>
+                    <div class="hero-btns">
+                        <a href="services.html" class="btn btn-primary">Our Services</a>
+                        <a href="contact.html" class="btn btn-secondary">Book Appointment</a>
+                    </div>
+                </div>
+                <div class="slide-overlay"></div>
+                <!-- REPLACE THIS IMAGE WITH YOURS -->
+                <img src="bg.jpg" 
+                     data-placeholder="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974&auto=format&fit=crop"
+                     alt="Luxury salon interior" 
+                     class="hero-bg">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="services-preview section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Premium Services</h2>
+                <p class="section-subtitle">Transform your beauty with our expert care</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Hair Care -->
+                <div class="service-card glass-effect">
+                    <div class="service-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <img src="hair.jpg" 
+                         data-placeholder="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2069&auto=format&fit=crop"
+                         alt="Hair Care Service" 
+                         class="service-image">
+                    <div class="service-content">
+                        <h3>Hair Care</h3>
+                        <p>Professional hair styling, cutting, coloring, and treatments for all hair types.</p>
+                        <a href="services.html#hair" class="service-link">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Massage Spa -->
+                <div class="service-card glass-effect">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-sparkles"></i>
+                    </div>
+                    <img src="IMG-20251202-WA0074.jpg" 
+                         data-placeholder="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop"
+                         alt="Spa & Massage" 
+                         class="service-image">
+                    <div class="service-content">
+                        <h3>Massage Spa</h3>
+                        <p>Relaxing and therapeutic massage treatments for complete rejuvenation.</p>
+                        <a href="services.html#spa" class="service-link">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Beauty & Personal Care -->
+                <div class="service-card glass-effect">
+                    <div class="service-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <img src="images.jpeg" 
+                         data-placeholder="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=2070&auto=format&fit=crop"
+                         alt="Beauty & Personal Care" 
+                         class="service-image">
+                    <div class="service-content">
+                        <h3>Beauty & Personal Care</h3>
+                        <p>Complete beauty solutions including skincare, nails, makeup, and more.</p>
+                        <a href="services.html#beauty" class="service-link">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta section-padding">
+        <div class="container">
+            <div class="cta-content glass-effect">
+                <h2>Ready for Your Transformation?</h2>
+                <p>Book your appointment today and experience premium beauty care in Sharjah.</p>
+                <div class="cta-btns">
+                    <a href="tel:+971566969293" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="https://wa.me/971566969293" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="Salon Logo" class="footer-logo-img">
+                        <h3>LAHADAT HADEAA<br>LADIES SALON</h3>
+                    </div>
+                    <p>Premium hair care, massage spa, and beauty services in the heart of Sharjah.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/lhlsalons" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@lhlsalons" target="_blank" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="mailto:Lhlsalons@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#hair">Hair Care</a></li>
+                        <li><a href="services.html#spa">Massage Spa</a></li>
+                        <li><a href="services.html#beauty">Beauty & Personal Care</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Shop 4, Hilli 7 Tower,<br>12 Muath Bin Al Hareth Street,<br>Al Nad, Al Qasimia, Sharjah UAE</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+971566969293">+971 566 969 293</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:Lhlsalons@gmail.com">Lhlsalons@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> LAHADAT HADEAA LADIES SALON. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

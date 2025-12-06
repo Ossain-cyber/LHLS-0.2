@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | LAHADAT HADEAA LADIES SALON | Beauty Transformations</title>
+    <meta name="description" content="View our gallery of beauty transformations, salon interior, and client results at Lahadat Hadeaa Ladies Salon in Sharjah.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .gallery-hero {
+            height: 60vh;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery-hero-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .gallery-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4));
+            z-index: 2;
+        }
+        
+        .gallery-hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--text-white);
+            z-index: 3;
+            width: 90%;
+            max-width: 800px;
+        }
+        
+        .gallery-hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-white);
+        }
+        
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 25px;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all var(--transition-fast);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform var(--transition-fast);
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-category {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .social-gallery {
+            background-color: var(--bg-light);
+            padding: 80px 0;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .social-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all var(--transition-fast);
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .social-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        
+        .social-icon {
+            font-size: 1.8rem;
+        }
+        
+        .social-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .social-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+        
+        .social-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+        
+        .lightbox-prev,
+        .lightbox-next {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background var(--transition-fast);
+        }
+        
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
+            
+            .gallery-img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/971566969293" class="whatsapp-float" target="_blank" aria-label="Contact on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="Lahadat Hadeaa Ladies Salon Logo" class="logo-img">
+                <span class="logo-text">LAHADAT HADEAA<br><small>LADIES SALON</small></span>
+            </div>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="tel:+971566969293" class="nav-btn">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <div class="gallery-hero-content">
+            <h1 class="gallery-hero-title">Our Beauty Gallery</h1>
+            <p class="hero-subtitle">Discover transformations, salon moments, and client stories</p>
+        </div>
+        <div class="gallery-hero-overlay"></div>
+        <!-- REPLACE THIS IMAGE WITH YOURS -->
+        <img src="bg.jpg" 
+             data-placeholder="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2069&auto=format&fit=crop"
+             alt="Beauty Gallery" 
+             class="gallery-hero-bg">
+    </section>
+
+    <!-- Gallery Filter -->
+    <div class="container">
+        <div class="gallery-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="hair">Hair Care</button>
+            <button class="filter-btn" data-filter="spa">Massage Spa</button>
+            <button class="filter-btn" data-filter="beauty">Beauty</button>
+            <button class="filter-btn" data-filter="salon">Salon</button>
+        </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="gallery-grid" id="galleryContainer">
+                <!-- Gallery items will be populated by JavaScript -->
+                <!-- Sample items below -->
+                <div class="gallery-item" data-category="hair">
+                    <img src="hair.jpg" 
+                         data-placeholder="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2069&auto=format&fit=crop"
+                         alt="Hair Styling Transformation" 
+                         class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Hair Care</span>
+                        <h4>Bridal Hair Styling</h4>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="spa">
+                    <img src="images/gallery-spa-1.jpg" 
+                         data-placeholder="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop"
+                         alt="Spa Relaxation" 
+                         class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Massage Spa</span>
+                        <h4>Aromatherapy Session</h4>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="beauty">
+                    <img src="images/gallery-beauty-1.jpg" 
+                         data-placeholder="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop"
+                         alt="Professional Makeup" 
+                         class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Beauty</span>
+                        <h4>Evening Makeup</h4>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="salon">
+                    <img src="AMF00586.JPG" 
+                         data-placeholder="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974&auto=format&fit=crop"
+                         alt="Salon Interior" 
+                         class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Salon</span>
+                        <h4>Our Luxury Interior</h4>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="hair">
+                    <img src="hairc.jpg" 
+                         data-placeholder="https://images.unsplash.com/photo-1552902865-b72c031ac5ea?q=80&w=1974&auto=format&fit=crop"
+                         alt="Hair Coloring" 
+                         class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Hair Care</span>
+                        <h4>Vibrant Hair Color</h4>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="beauty">
+                    <img src="download (1).webp" 
+                         data-placeholder="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop"
+                         alt="Nail Art" 
+                         class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Beauty</span>
+                        <h4>Creative Nail Design</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Integration -->
+    <section class="social-gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Follow Our Journey</h2>
+                <p class="section-subtitle">Connect with us on social media for daily beauty inspiration</p>
+            </div>
+            
+            <div class="social-grid">
+                <div class="social-card glass-effect">
+                    <div class="social-header">
+                        <i class="fab fa-instagram social-icon"></i>
+                        <div>
+                            <h3>Instagram</h3>
+                            <p>@lhlsalons</p>
+                        </div>
+                    </div>
+                    <div class="social-content">
+                        <p>Follow us for daily beauty tips, transformations, and salon updates.</p>
+                        <a href="https://www.instagram.com/lhlsalons" target="_blank" class="social-btn">
+                            Follow Now <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="social-card glass-effect">
+                    <div class="social-header">
+                        <i class="fab fa-tiktok social-icon"></i>
+                        <div>
+                            <h3>TikTok</h3>
+                            <p>@lhlsalons</p>
+                        </div>
+                    </div>
+                    <div class="social-content">
+                        <p>Watch our beauty tutorials, transformations, and behind-the-scenes moments.</p>
+                        <a href="https://www.tiktok.com/@lhlsalons" target="_blank" class="social-btn">
+                            Follow Now <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="social-card glass-effect">
+                    <div class="social-header">
+                        <i class="fas fa-video social-icon"></i>
+                        <div>
+                            <h3>Video Gallery</h3>
+                            <p>Transformations</p>
+                        </div>
+                    </div>
+                    <div class="social-content">
+                        <p>Watch amazing before-and-after transformations from our satisfied clients.</p>
+                        <a href="https://www.instagram.com/lhlsalons" target="_blank" class="social-btn">
+                            View Videos <i class="fas fa-play"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta section-padding">
+        <div class="container">
+            <div class="cta-content glass-effect">
+                <h2>Ready for Your Transformation?</h2>
+                <p>Book your appointment today and join our family of beautiful clients.</p>
+                <div class="cta-btns">
+                    <a href="tel:+971566969293" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="https://wa.me/971566969293" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="Salon Logo" class="footer-logo-img">
+                        <h3>LAHADAT HADEAA<br>LADIES SALON</h3>
+                    </div>
+                    <p>Premium hair care, massage spa, and beauty services in the heart of Sharjah.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/lhlsalons" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@lhlsalons" target="_blank" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="mailto:Lhlsalons@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#hair">Hair Care</a></li>
+                        <li><a href="services.html#spa">Massage Spa</a></li>
+                        <li><a href="services.html#beauty">Beauty & Personal Care</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Shop 4, Hilli 7 Tower,<br>12 Muath Bin Al Hareth Street,<br>Al Nad, Al Qasimia, Sharjah UAE</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+971566969293">+971 566 969 293</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:Lhlsalons@gmail.com">Lhlsalons@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> LAHADAT HADEAA LADIES SALON. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <div class="lightbox-content">
+            <button class="lightbox-close">&times;</button>
+            <img id="lightboxImage" src="" alt="" class="lightbox-img">
+            <div class="lightbox-nav">
+                <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Gallery Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox functionality
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxPrev = document.querySelector('.lightbox-prev');
+            const lightboxNext = document.querySelector('.lightbox-next');
+            
+            let currentImageIndex = 0;
+            const galleryImages = Array.from(galleryItems).map(item => ({
+                src: item.querySelector('img').src,
+                alt: item.querySelector('img').alt,
+                category: item.getAttribute('data-category')
+            }));
+            
+            // Open lightbox
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    currentImageIndex = index;
+                    updateLightboxImage();
+                    lightboxModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close lightbox
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxModal.addEventListener('click', function(e) {
+                if (e.target === lightboxModal) {
+                    closeLightbox();
+                }
+            });
+            
+            // Navigation
+            lightboxPrev.addEventListener('click', function() {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                updateLightboxImage();
+            });
+            
+            lightboxNext.addEventListener('click', function() {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                updateLightboxImage();
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (lightboxModal.style.display === 'flex') {
+                    if (e.key === 'Escape') closeLightbox();
+                    if (e.key === 'ArrowLeft') lightboxPrev.click();
+                    if (e.key === 'ArrowRight') lightboxNext.click();
+                }
+            });
+            
+            function updateLightboxImage() {
+                const image = galleryImages[currentImageIndex];
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt;
+            }
+            
+            function closeLightbox() {
+                lightboxModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>
